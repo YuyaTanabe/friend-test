@@ -1,0 +1,23 @@
+<div class='body'>
+    <div class='container'>
+
+<div class='row'>
+
+<h1>Friendships#new</h1>
+<p>Find me in app/views/friendships/new.html.erb</p>
+
+        <h2>friend invite</h2>
+        <%= form_for(@friendship) do |f| %>
+            <div class="field row">
+                <%= f.label :to_user_id %>
+                <%= f.text_field :to_user_id, class:"col-xs-12 book_title" %>
+            </div>
+
+            <div class="actions row">
+                <%= f.submit 'Invite', class:"btn btn-primary col-xs-12" %>
+            </div>
+        <% end %>
+</div>
+
+    </div>
+</div>
