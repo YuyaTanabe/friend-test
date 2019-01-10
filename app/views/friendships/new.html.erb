@@ -1,16 +1,20 @@
 <div class='body'>
     <div class='container'>
 
-<div class='row'>
+        <% if notice %>
+           <!-- <p id="notice"><%= flash.notice %></p> -->
+          <div class="callout success" data-closable style="color: red; margin-top: 20px;">
+            <span class="fi-info"></span> <%= notice %>
+          </div>
+        <% end %>
 
-<h1>Friendships#new</h1>
-<p>Find me in app/views/friendships/new.html.erb</p>
+<div class='row'>
 
         <h2>friend invite</h2>
         <%= form_for(@friendship) do |f| %>
             <div class="field row">
-                <%= f.label :to_user_id %>
-                <%= f.text_field :to_user_id, class:"col-xs-12 book_title" %>
+                <%= f.label :friend_id %>
+                <%= f.text_field :friend_id, class:"col-xs-12 book_title" %>
             </div>
 
             <div class="actions row">

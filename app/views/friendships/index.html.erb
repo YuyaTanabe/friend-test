@@ -3,8 +3,15 @@
 
 <div class='row'>
 
+        <% if notice %>
+           <!-- <p id="notice"><%= flash.notice %></p> -->
+          <div class="callout success" data-closable style="color: red; margin-top: 20px;">
+            <span class="fi-info"></span> <%= notice %>
+          </div>
+        <% end %>
+
     <div class=''>
-        <h2><%= current_user.user_name %>のフレンド一覧</h2>
+        <h2><span style="color: orange;"><%= current_user.user_name %></span>のフレンド一覧</h2>
         <h3><%= link_to '友達追加', new_friendship_path, class: "glyphicon glyphicon-user users" %></h3>
         <table class="table">
             <thead>
@@ -21,6 +28,7 @@
                         <td><%= to_user.user_name %></td>
                         <td><%= to_user.friend_id %></td>
                         <td><%= link_to "Show", user_path(to_user) %></td>
+                        <td><%= link_to "解除",friendship_path(friendship.id), method: :delete, class:"btn-sm btn-danger" %></td>
                     </tr>
                 <% end %>
             </tbody>
