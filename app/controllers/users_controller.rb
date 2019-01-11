@@ -7,6 +7,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # @locations = Location.all
+    @location = Location.where(user_id: @user.id)
+
 
   end
 

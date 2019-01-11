@@ -1,2 +1,43 @@
-<h1>Locations#new</h1>
-<p>Find me in app/views/locations/new.html.erb</p>
+
+<div class='body'>
+  <div class='container'>
+    <div class='row'>
+
+      <h2><span style="color: orange;"></span>Location clip</h2>
+
+	  <%= form_for @location do |f| %>
+
+	    <div class="field">
+	      <%= f.label :名前 %>
+	      <%= f.text_field :location_name %>
+	    </div>
+	    <div>
+	  	  <%= f.label :画像 %>
+	 	  <%= f.attachment_field :location_image, placeholder: "イメージ画像を選択" %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :最寄駅 %>
+	      <%= f.text_field :station %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :関連URL %>
+	      <%= f.text_field :location_url %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :メモ %>
+	      <%= f.text_area :location_memo %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :住所 %>
+	      <%= f.text_field :address, placeholder: "記入例　東京都墨田区押上一丁目1番1号" %>
+	    </div>
+
+	    <div class="actions">
+	      <%= f.submit 'Clip', class:"btn btn-primary col-xs-12" %>
+	    </div>
+
+	  <% end %>
+
+    </div>
+  </div>
+</div>
