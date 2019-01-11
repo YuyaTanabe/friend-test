@@ -1,2 +1,35 @@
-<h1>Locations#show</h1>
-<p>Find me in app/views/locations/show.html.erb</p>
+
+<div class='body'>
+  <div class='container'>
+    <div class='row'>
+
+      <% if notice %>
+         <!-- <p id="notice"><%= flash.notice %></p> -->
+        <div class="callout success" data-closable style="color: red; margin-top: 20px;">
+          <span class="fi-info"></span> <%= notice %>
+        </div>
+      <% end %>
+
+      <div class=''>
+        <h2><span style="color: orange;"><%= @location.location_name %></span></h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>location ID</th>
+              <th>住所</th>
+              <th colspan="1"></th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><%= @location.id %></td>
+                <td><%= @location.address %></td>
+                <td><%= link_to "解除", location_path(@location.id), method: :delete, class:"btn-sm btn-danger" %></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

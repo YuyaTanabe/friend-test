@@ -1,23 +1,23 @@
 <div class='body'>
-    <div class='container'>
+  <div class='container'>
+    <div class='row'>
 
-        <% if notice %>
-           <!-- <p id="notice"><%= flash.notice %></p> -->
-          <div class="callout success" data-closable style="color: red; margin-top: 20px;">
-            <span class="fi-info"></span> <%= notice %>
-          </div>
-        <% end %>
+      <% if notice %>
+        <!-- <p id="notice"><%= flash.notice %></p> -->
+        <div class="callout success" data-closable style="color: red; margin-top: 20px;">
+          <span class="fi-info"></span> <%= notice %>
+        </div>
+      <% end %>
 
-<div class='row'>
 
-        <h2>friend invite</h2>
+        <h1 style="text-align: center; margin-top: 100px; margin-bottom: 40px;">Invite friend!!</h1>
         <%= form_for(@friendship) do |f| %>
-            <div class="field row">
-                <%= f.label :friend_id %>
+            <div class="field row col-xs-4 col-xs-offset-4">
+                <%= f.label :フレンドID %>
                 <%= f.text_field :friend_id, class:"col-xs-12 book_title" %>
             </div>
 
-            <div class="actions row">
+            <div class="actions row col-xs-4 col-xs-offset-4">
                 <%= f.submit 'Invite', class:"btn btn-primary col-xs-12" %>
             </div>
         <% end %>
