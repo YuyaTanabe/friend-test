@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_10_011719) do
+ActiveRecord::Schema.define(version: 2019_01_11_011931) do
 
   create_table "friendrequests", force: :cascade do |t|
     t.string "friend_id"
@@ -22,6 +22,21 @@ ActiveRecord::Schema.define(version: 2019_01_10_011719) do
     t.integer "from_user_id"
     t.integer "to_user_id"
     t.string "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "location_name"
+    t.string "location_image_id"
+    t.string "station"
+    t.string "location_url"
+    t.text "location_memo"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "public_status"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

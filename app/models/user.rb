@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :friendships, foreign_key: "friend_id"
-  has_many :friendrequests, foreign_key: "friend_id"
+  has_many :friendships, dependent: :destroy
+  has_many :locations, dependent: :destroy
 
 
     # def friendshiped_by?(user)
