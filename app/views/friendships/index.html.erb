@@ -1,40 +1,38 @@
 <div class='body'>
-    <div class='container'>
+  <div class='container'>
+    <div class='row'>
 
-<div class='row'>
+      <% if notice %>
+        <div class="callout success" data-closable style="color: red; margin-top: 20px;">
+          <span class="fi-info"></span> <%= notice %>
+        </div>
+      <% end %>
 
-        <% if notice %>
-           <!-- <p id="notice"><%= flash.notice %></p> -->
-          <div class="callout success" data-closable style="color: red; margin-top: 20px;">
-            <span class="fi-info"></span> <%= notice %>
-          </div>
-        <% end %>
-
-    <div class=''>
+      <div class=''>
         <h2><span style="color: orange;"><%= current_user.user_name %></span>のフレンド一覧</h2>
         <h3 style="text-align: center; margin: 30px auto;"><%= link_to '友達追加', new_friendship_path, class: "glyphicon glyphicon-user users btn-lg btn-info" %></h3>
         <table class="table">
-            <thead>
-                <tr>
-                    <th>friend name</th>
-                    <th>friend ID</th>
-                    <th colspan="3"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <% @friendship.each do |friendship| %>
-                	<% to_user = User.find(friendship.to_user_id) %>
-                    <tr>
-                        <td><%= to_user.user_name %></td>
-                        <td><%= to_user.friend_id %></td>
-                        <td><%= link_to "Show", user_path(to_user) %></td>
-                        <td><%= link_to "解除",friendship_path(friendship.id), method: :delete, class:"btn-sm btn-danger" %></td>
-                    </tr>
-                <% end %>
-            </tbody>
+          <thead>
+            <tr>
+              <th>friend name</th>
+              <th>friend ID</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @friendship.each do |friendship| %>
+              <% to_user = User.find(friendship.to_user_id) %>
+              <tr>
+                <td><%= to_user.user_name %></td>
+                <td><%= to_user.friend_id %></td>
+                <td><%= link_to "Show", user_path(to_user) %></td>
+                <td><%= link_to "解除",friendship_path(friendship.id), method: :delete, class:"btn-sm btn-danger" %></td>
+              </tr>
+            <% end %>
+          </tbody>
         </table>
-    </div>
-</div>
+      </div>
 
     </div>
+  </div>
 </div>

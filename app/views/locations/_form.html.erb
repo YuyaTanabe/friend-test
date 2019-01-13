@@ -1,0 +1,33 @@
+
+	  <%= form_for @location do |f| %>
+
+	    <div class="field">
+	      <%= f.label :名前 %>
+	      <%= f.text_field :location_name %>
+	    </div>
+	    <div>
+	  	  <%= f.label :画像 %>
+	 	  <%= f.attachment_field :location_image, placeholder: "イメージ画像を選択" %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :最寄駅 %>
+	      <%= f.text_field :station %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :関連URL %>
+	      <%= f.text_field :location_url %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :メモ %>
+	      <%= f.text_area :location_memo %>
+	    </div>
+	    <div class="field">
+	      <%= f.label :地図登録したい地名 %>
+	      <%= f.text_field :address, placeholder: "記入例　東京スカイツリー" %>
+	    </div>
+
+	    <div class="actions">
+	      <%= f.submit 'Clip', class:"btn btn-primary col-xs-12" %>
+	    </div>
+
+	  <% end %>

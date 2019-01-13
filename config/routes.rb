@@ -2,13 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+
   root to: 'home#top' #ルートパス
-
-  root 'users#show'
-
-  # get "users/:id" => "users#show", as: :mypage #ログイン中はマイページ
-
-  # get '/top' => 'home#top'
 
   get "users/clip" => "users#clip"
 

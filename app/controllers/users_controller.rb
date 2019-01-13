@@ -2,15 +2,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-
   end
 
   def show
     @user = User.find(params[:id])
-    # @locations = Location.all
     @location = Location.where(user_id: @user.id)
-
-
   end
 
   def update
@@ -27,8 +23,10 @@ class UsersController < ApplicationController
 
   def clip
   end
-    private
+
+  private
     def user_params
-        params.require(:user).permit(:user_name, :friend_id, :email, :password, :deleted_at)
+      params.require(:user).permit(:user_name, :friend_id, :email, :password, :deleted_at)
     end
+
 end

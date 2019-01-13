@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   def index
+    @locations = Location.all
   end
 
   def new
@@ -30,9 +31,13 @@ class LocationsController < ApplicationController
   end
 
   def destroy
+    location = Location.find(params[:id])
+    location.destroy
+    flash[:notice] = location.location_name + "を削除しました"
+    redirect_to user_path(current_user)
   end
 
-    private
+  private
     def location_params
         params.require(:location).permit(:location_name, :location_image, :station, :location_url, :location_memo,
          :address, :latitude, :longitude, :public_status, :user_id)
