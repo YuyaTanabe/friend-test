@@ -33,7 +33,7 @@ class LocationsController < ApplicationController
   def destroy
     location = Location.find(params[:id])
     location.destroy
-    flash[:notice] = location.location_name + "を削除しました"
+    flash[:alert] = location.location_name + "を削除しました"
     redirect_to user_path(current_user)
   end
 

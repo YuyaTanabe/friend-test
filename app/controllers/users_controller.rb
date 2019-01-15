@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
+  # before_action :authenticate_user!, :only => [:clip]
+
 
   def index
-    @users = User.all
+    if user_signed_in?
+      @users = User.all
+    else
+      flash[:alert] = "ログインしてください"
+      redirect_to root_path
+    end
   end
 
   def show

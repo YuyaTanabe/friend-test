@@ -10,7 +10,6 @@
   </head>
 
   <body>
-
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <nav class='nav navbar-nav navbar-left' >
@@ -40,7 +39,24 @@
       </div>
     </header>
 
-    <%= yield %>
+    <% if notice %>
+      <br>
+      <p class="alert alert-success" style="text-align: center;" ><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <br>
+      <p class="alert alert-danger" style="text-align: center;" ><%= alert %></p>
+    <% end %>
+
+    <div class='body'>
+      <div class='container'>
+        <div class='row'>
+
+          <%= yield %>
+
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>

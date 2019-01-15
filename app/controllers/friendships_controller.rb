@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
 
   	if to_friend_id == current_user.friend_id
   	  @friendship = Friendship.new
-        flash[:notice] = "それはあなたのフレンドIDです"
+        flash[:alert] = "それはあなたのフレンドIDです"
   	  render "new"
   	elsif
   	  to_user = User.find_by(friend_id: to_friend_id)
@@ -17,17 +17,17 @@ class FriendshipsController < ApplicationController
       if
         current_user.is_friend?(to_user)
         @friendship = Friendship.new
-        flash[:notice] = to_user.user_name + "はすでにあなたのフレンドです"
+        flash[:alert] = to_user.user_name + "はすでにあなたのフレンドです"
 	      render "new"
 	    else
   	    friendship = Friendship.create(from_user_id: current_user.id, to_user_id: to_user.id, friend_id: to_user.friend_id)
   	    friendship_back = Friendship.create(from_user_id: to_user.id, to_user_id: current_user.id, friend_id: current_user.friend_id)
-        flash[:notice] = to_user.user_name + "はあなたのフレンドになりました"
+        flash[:alert] = to_user.user_name + "はあなたのフレンドになりました"
 	      redirect_to friendships_path
 	    end
 	  else
   	  @friendship = Friendship.new
-        flash[:notice] = "そのフレンドIDは存在しません"
+      flash[:alert] = "そのフレンドIDは存在しません"
   	  render "new"
 	  end
   end
