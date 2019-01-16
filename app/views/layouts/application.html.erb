@@ -17,7 +17,7 @@
         </nav>
           <% if user_signed_in? %>
             <nav class='nav navbar-nav' >
-              <h4 style="margin-top: 19px; margin-bottom: 14px; margin-left: 50px; color: orange;"><span><%= current_user.user_name %></span></h4>
+              <h4 style="margin-top: 19px; margin-bottom: 14px; margin-left: 50px; color: orange;"><span><%= current_user.user_name %> ID <%= current_user.id %></span></h4>
             </nav>
           <% end %>
         <nav>

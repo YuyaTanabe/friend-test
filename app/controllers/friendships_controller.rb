@@ -14,15 +14,14 @@ class FriendshipsController < ApplicationController
   	elsif
   	  to_user = User.find_by(friend_id: to_friend_id)
 
-      if
-        current_user.is_friend?(to_user)
+      if current_user.is_friend?(to_user)
         @friendship = Friendship.new
         flash[:alert] = to_user.user_name + "はすでにあなたのフレンドです"
 	      render "new"
 	    else
   	    friendship = Friendship.create(from_user_id: current_user.id, to_user_id: to_user.id, friend_id: to_user.friend_id)
   	    friendship_back = Friendship.create(from_user_id: to_user.id, to_user_id: current_user.id, friend_id: current_user.friend_id)
-        flash[:alert] = to_user.user_name + "はあなたのフレンドになりました"
+        flash[:notice] = to_user.user_name + "はあなたのフレンドになりました"
 	      redirect_to friendships_path
 	    end
 	  else
@@ -42,6 +41,15 @@ class FriendshipsController < ApplicationController
     friendship_back = Friendship.find_by(from_user_id: to_user.id, to_user_id: current_user.id)
     friendship.destroy
     friendship_back.destroy
+    # フレンド関係を削除したときに、それに基づくチャットルームも削除する
+    if Room.where(friendship_id: friendship.id).exists?
+      first_room = Room.find_by(friendship_id: friendship.id)
+      first_room.destroy
+    else
+      Room.where(friendship_id: friendship_back.id).exists?
+      second_room = Room.find_by(friendship_id: friendship_back.id)
+      second_room.destroy
+    end
     flash[:notice] = to_user.user_name + "をフレンドから削除しました"
     redirect_to friendships_path
   end

@@ -3,14 +3,14 @@
   <h2 class='friendships_index col-md-8'><span style="color: orange;"><%= current_user.user_name %></span>のフレンド一覧</h2>
   <h2 class='friendships_index col-md-4' style="float: right;">
     <div style="float: right;">
-      <%= link_to '友達追加', new_friendship_path, class: "glyphicon glyphicon-user btn-lg btn-info" %>
+      <%= link_to '友達追加', new_friendship_path, class:"glyphicon glyphicon-user btn-lg btn-info" %>
     </div>
   </h2>
   <table class="table">
     <thead>
       <tr>
-        <th>friend name</th>
-        <th>friend ID</th>
+        <th>フレンド</th>
+        <th>フレンドID</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -21,7 +21,7 @@
           <td><%= to_user.user_name %></td>
           <td><%= to_user.friend_id %></td>
           <td><%= link_to "Show", user_path(to_user) %></td>
-          <td><%= link_to "解除",friendship_path(friendship.id), method: :delete, class:"btn-sm btn-danger" %></td>
+          <td><%= link_to "解除", friendship_path(friendship.id), "data-confirm" => "本当に消しますか?", method: :delete, class:"btn-sm btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>

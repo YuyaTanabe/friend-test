@@ -1,7 +1,36 @@
 
-<h2><span style="color: orange;"><%= @user.user_name %></span>のLocation一覧</h2>
+<div class='chat col-md-4' style="margin-top: 100px; text-align: center; margin-bottom: 50px;">
+  <% if @user.id == current_user.id %>
+    <div class="">
+      <h2>チャット一覧</h2>
+      <hr>
+      <% @entries.each do |e| %>
+        <p>
+          <%= link_to room_path(e.room.id), class:"" do %>
+            <strong><%= e.room.id %>   </strong>
+          <% end %>
+          <%= link_to "チャットルームを削除する", room_path(e.room.id), method: :delete, class:"btn-sm btn-danger" %>
+        </p>
+        <hr>
+      <% end %>
+      <%= link_to "チャット一覧を見る", rooms_path, class:"btn btn-info" %>
+    </div>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <% @friendship = Friendship.find_by(from_user_id: current_user.id, to_user_id: @user.id) %>
+      <%= f.hidden_field :friendship_id, :value => @friendship.id %>
+      <%= f.hidden_field :invite_user_id, :value => current_user.id %>
+      <%= f.hidden_field :invited_user_id, :value => @user.id %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :user_id, :value => @user.id %>
+        <% end %>
+      <%= f.submit "チャットを始める", class:"btn btn-warning" %>
+    <% end %>
+  <% end %>
+</div>
 
-<div class='user_show col-md-8 col-md-offset-2'>
+<div class='user_show col-md-8' style="margin-top: 100px;">
+<h2><span style="color: orange;"><%= @user.user_name %></span>のLocation一覧</h2>
   <table class="table">
     <thead>
       <tr>
@@ -17,7 +46,7 @@
           <td><%= location.location_name %></td>
           <td><%= location.id %></td>
           <td><%= link_to "Show", location_path(location.id) %></td>
-          <td><%= link_to "解除", location_path(location.id), method: :delete, class:"btn-sm btn-danger" %></td>
+          <td><%= link_to "削除", location_path(location.id), "data-confirm" => "本当に消しますか?", method: :delete, class:"btn-sm btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>

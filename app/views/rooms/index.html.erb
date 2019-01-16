@@ -1,0 +1,8 @@
+<h1>チャット一覧</h1>
+<hr>
+<% @entries.each do |e| %>
+  <%= link_to room_path(e.room_id) do %><%= e.room.id %><% end %>
+  <%= link_to room_path(e.room_id) do %><%= e.room.room_name %><% end %>
+  <hr>
+<% end %>
+<%= link_to user_path(current_user.id), class:"btn btn-primary" do %><%= current_user.user_name %> の情報に戻る<% end %>

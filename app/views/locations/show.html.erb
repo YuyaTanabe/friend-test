@@ -5,7 +5,7 @@
     <thead>
       <tr>
         <th>location ID</th>
-        <th>住所・地名</th>
+        <th>場所</th>
         <th colspan="1"></th>
       </tr>
     </thead>
@@ -13,7 +13,7 @@
       <tr>
         <td><%= @location.id %></td>
         <td><%= @location.address %></td>
-        <td><%= link_to "削除", location_path(@location.id), method: :delete, class:"btn-sm btn-danger" %></td>
+        <td><%= link_to "削除", location_path(@location.id), "data-confirm" => "本当に消しますか?", method: :delete, class:"btn-sm btn-danger" %></td>
       </tr>
     </tbody>
   </table>
@@ -33,7 +33,7 @@
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
 
-    var contentString = '住所・地名：<%= @location.address %>';
+    var contentString = '<%= @location.address %>';
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });

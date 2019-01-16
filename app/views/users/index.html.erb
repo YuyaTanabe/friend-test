@@ -1,5 +1,5 @@
 
-<div class='user_index well well-compact col-md-8 col-md-offset-2' style="margin-top: 100px;">
+<div class='user_index col-md-8 col-md-offset-2' style="margin-top: 100px;">
   <h2>ユーザー一覧</h2>
   <hr>
   <table class="table">
@@ -16,7 +16,7 @@
           <td><a href="/users/<%= user.id %>"><%= user.user_name %></a></td>
           <td><%= user.friend_id %></td>
           <td><%= link_to "Show", user_path(user.id), class:"user_#{user.id}" %></td>
-          <td><%= link_to "アカウント削除",user_path(user.id), method: :delete, class:"btn-sm btn-danger" %></td>
+          <td><%= link_to "アカウント削除",user_path(user.id), "data-confirm" => "本当に消しますか?", method: :delete, class:"btn-sm btn-danger" %></td>
         </tr>
       <% end %>
     </tbody>

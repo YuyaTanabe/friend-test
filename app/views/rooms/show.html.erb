@@ -1,0 +1,58 @@
+
+<div class='user_index' style="margin-top: 100px;">
+
+<div class="col-xs-3 text-center" style="margin-bottom: 100px;">
+  <h4>チャットルーム ID:<%= @room.id %></h4>
+  <h4><%= @room.room_name %></h4>
+  <h4><small><%= @room.room_explanation %></small></h4>
+    <hr>
+    <h4>参加者</h4>
+    <% @entries.each do |e| %>
+      <h5><strong><%= link_to user_path(e.user.id), class:"user_#{e.user.id}" do %><%= e.user.user_name %> ID:<%= e.user.id %><% end %></strong></h5>
+    <% end %>
+  <hr>
+  <%= link_to edit_room_path(@room.id), class:"btn btn-success" do %>チャットルームの情報を編集する<% end %>
+</div>
+<div class="col-xs-9">
+  <% if @messages.present? %>
+    <% @messages.each do |m| %>
+      <% if m.user_id == current_user.id %>
+        <h4 class="text-right">
+          <p class="text-area alert alert-success" style="word-wrap: break-word;">
+            <%= m.content %>
+            <br><br>
+            <small><strong><%= link_to user_path(m.user.id), class:"user_#{m.user.id}" do %><%= m.user.user_name %><% end %></strong></small>
+            <br>
+            <small><strong><%= link_to edit_message_path(m.id), class:"message_#{m.id}" do %>編集<% end %></strong></small>
+            <small><strong><%= link_to message_path(m.id), "data-confirm" => "本当に消しますか?", method: :delete, class:"delete_message_#{m.id}" do %>削除<% end %></strong></small>
+          </p>
+        </h4>
+      <% else %>
+        <h4 class="text-left">
+          <p class="alert alert-info">
+            <%= m.content %>
+            <br><br>
+            <small><strong><%= link_to user_path(m.user.id), class:"user_#{m.user.id}" do %><%= m.user.user_name %><% end %></strong></small>
+          </p>
+        </h4>
+      <% end %>
+    <% end %>
+  <% else %>
+    <br>
+    <h3 class="text-center">メッセージはまだありません</h3>
+    <br>
+  <% end %>
+
+  <hr>
+  <%= form_for @message do |f| %>
+    <%= f.text_area :content, class:"form-control", placeholder:"メッセージを入力して下さい" %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <br>
+    <div class="text-center">
+      <%= f.submit "投稿する", :class => "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+</div>
+

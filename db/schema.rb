@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_13_175352) do
+ActiveRecord::Schema.define(version: 2019_01_16_082004) do
+
+  create_table "entries", force: :cascade do |t|
+    t.integer "room_id"
+    t.string "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer "from_user_id"
@@ -33,6 +40,24 @@ ActiveRecord::Schema.define(version: 2019_01_13_175352) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.string "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "room_name"
+    t.text "room_explanation"
+    t.integer "friendship_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "invite_user_id"
+    t.integer "invited_user_id"
   end
 
   create_table "users", force: :cascade do |t|
